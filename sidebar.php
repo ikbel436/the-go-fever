@@ -69,28 +69,15 @@
 <!--Go Gestion Voyage.php-->
 
 <li class="nav-item">
-             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVoyage" aria-expanded="true" aria-controls="collapseVoyage">
+             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseannonce" aria-expanded="true" aria-controls="collapseannonce">
                  <i class=""></i>
-                 <span>Voyage</span>
+                 <span>Annonce</span>
              </a>
-             <div id="collapseVoyage" class="collapse" aria-labelledby="headingVoyage" data-parent="#accordionSidebar">
+             <div id="collapseannonce" class="collapse" aria-labelledby="headingannonce" data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">
-                     <h6 class="collapse-header">Custom Voyage:</h6>
-                     <a class="collapse-item" href="AjoutVoyage.php">Ajouter Voyage</a>
-                     <a class="collapse-item" href="listeVoyage.php">Liste voyages</a>
-                 </div>
-             </div>
-         </li>
-         <li class="nav-item">
-             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsetype" aria-expanded="true" aria-controls="collapsetype">
-                 <i class=""></i>
-                 <span>type</span>
-             </a>
-             <div id="collapsetype" class="collapse" aria-labelledby="headingtype" data-parent="#accordionSidebar">
-                 <div class="bg-white py-2 collapse-inner rounded">
-                     <h6 class="collapse-header">Custom type:</h6>
-                     <a class="collapse-item" href="ajouttype.php">Ajouter Type</a>
-                     <a class="collapse-item" href="listeType.php">Liste Type</a>
+                     <h6 class="collapse-header">Custom annonce:</h6>
+                     <a class="collapse-item" href="AjouterAnnonce.php">Ajouter annonce</a>
+                     <a class="collapse-item" href="ModifierAnnonce.php">Modifier annonce</a>
                  </div>
              </div>
          </li>
@@ -120,7 +107,7 @@
          <li class="nav-item">
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAnnonce" aria-expanded="true" aria-controls="collapseAnnonce">
                  <i class=""></i>
-                 <span>Annonce</span>
+                 <span>promo</span>
              </a>
              <div id="collapseAnnonce" class="collapse" aria-labelledby="headingAnnonce" data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">

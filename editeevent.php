@@ -1,14 +1,10 @@
 <?php
-include_once '../../model/events.php';
-include_once '../../controller/ajouterevent.php';
+include "../../controller/ajouterevent.php";
+include_once "../../model/events.php";
 
-$error = "";
 
-// create event
-$event = null;
-
-// create an instance of the controller
 $eventC = new eventC();
+$error = "";
 if (
     isset($_POST["nomevent"]) &&
     isset($_POST["nbrplace"]) &&
@@ -19,7 +15,8 @@ if (
         !empty($_POST["nomevent"]) &&
         !empty($_POST["nbrplace"]) &&
         !empty($_POST["imageevent"]) &&
-        !empty($_POST["descriptionevent"]) 
+        !empty($_POST["descriptionevent"])
+
     ) {
         $event = new event(
             $_POST['nomevent'],
@@ -28,16 +25,13 @@ if (
             $_POST['descriptionevent']
 
         );
-        $eventC->ajouterevent($event);
-        //header('Location:../front/blogs.php');
+        $eventC->modifierevent($event, $_GET['idevent']);
+       // header('Location:../front/');
     } else
         echo "Missing information";
 }
-
-
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,12 +44,11 @@ if (
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ajouter event</title>
+    <title>Editer event</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
 
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -81,50 +74,66 @@ if (
 
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
 
-                    <div>
-                        <form method="post" action="">
-                            <div class="form-group">
-                                <label for="nomevent">Modifier le nom d'evenment</label>
-                                <input type="text" class="form-control" name="nomevent" id="nomevent" placeholder="Entrer le nomevent">
-                            </div>
+                <div id="error">
+                    <?php echo $error; ?>
+                </div>
 
-                      
-
+                <?php
+                if (isset($_GET['idevent'])) {
+                    $event = $eventC->recupererevent($_GET['idevent']);
+                ?>
 
 
-                            <div class="form-group">
-                                <label for="nbrplace">Taper le nouveau nombre des places</label>
-                                <input type="number" class="form-control" name="nbrplace">
-                            </div>
+                    <div class="container-fluid">
 
-                          
-                            <div class="form-group">
-                                <label for="imageevent">Ajouter une nouvelle Image</label>
-                                <input type="file" class="form-control-file" name="imageevent">
-                            </div>
-                      
-                            <div class="form-group">
-                                <label for="descriptionevent"> Description </label>
-                                <input type="text" class="form-control" name="descriptionevent">
-                            </div>
-                            <script>
+                        <div>
+                            <form method="POST" action="">
+                                <div class="form-group">
+                                    <label for="idevent">idevent</label>
+                                    <input type="text" class="form-control" name="idevent" id="idevent" value="<?php echo $event['idevent']; ?>" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="nomevent">nomevent</label>
+                                    <input type="text" class="form-control" name="nomevent" id="nomevent" value="<?php echo $event['nomevent']; ?> ">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="nbrplace">nbr places </label>
+                                    <input type="number" class="form-control" name="nbrplace" rows="10" <?php echo $event['nbrplace']; ?> >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="imageevent">imageevent</label>
+                                    <input type="file" class="form-control-file"  name="imageevent" value="<?php echo $event['imageevent']; ?> ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="descriptionevent">descriptionevent</label>
+                                    <textarea type="text" class="form-control" name="descriptionevent" ><?php echo $event['descriptionevent']; ?> </textarea>
+                                </div>
+                         
+
+
+
+
+
+                                <button type="submit" value="Envoyer" class="btn btn-primary">Submit</button>
+
+                            </form>
+                        </div>
+                        <script>
                             CKEDITOR.replace('descriptionevent');
                         </script>
 
-                            <button type="submit" value="Envoyer" class="btn btn-primary">Submit</button>
 
-                        </form>
+
+
+
+
                     </div>
-                    
-
-
-
-
-
-                </div>
-                <!-- /.container-fluid -->
+                    <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
@@ -170,7 +179,11 @@ if (
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+<?php
+                } else {
+                    echo "errorrrr ";
+                }
+?>
 </body>
 
 </html>
